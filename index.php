@@ -60,7 +60,7 @@
         <form class="d-flex align-items-center justify-content-start gap-3" action="./index.php" method="get">
             <div>
                 <label for="if_parking">FILTRA PER PARCHEGGIO</label>
-                <input type="checkbox" id="if_parking" name="if_parking" <?php echo ($parking_filter == 'on' ? 'checked' : '')  ?>>
+                <input type="checkbox" id="if_parking" name="if_parking" <?php echo ($parking_filter == 'on' ? 'checked' : '') ?>>
             </div>
             <div>
                 <label for="min_vote">VOTO MINIMO:</label>
