@@ -48,61 +48,112 @@
                 'distance_to_center' => 50
             ],
         ];
+
+        $parking_filter = ($_GET['if_parking'] ?? 'off');
     ?>
 
     <div class="container">
 
-        <h1>HOTEL HOMEPAGE</h1>
+        <h1 class="text-center">HOTEL HOMEPAGE</h1>
+
+        <form class="d-flex align-items-center justify-content-start gap-3" action="./index.php" method="get">
+            <div>
+                <label for="if_parking">FILTRA PER PARCHEGGIO</label>
+                <input type="checkbox" id="if_parking" name="if_parking" <?php echo ($parking_filter == 'on' ? 'checked' : '')  ?>>
+            </div>    
+            <button class="btn btn-outline-primary" type="submit">AGGIORNA</button>
+
+        </form>
+
 
         <table class="table text-center">
             <thead>
-                <tr>
+                <tr class="table-info">
                     <th scope="col">HOTEL</th>+
                     <?php foreach ($hotels as $hotel) { ?>
+                        <?php if($parking_filter == 'on'){ ?>
+                            <th scope="col">
+                                <?php 
+                                    if($hotel['parking']){
+                                        echo $hotel['name'];
+                                    }  
+                                ?>
+                            </th>
+                        <?php }else{ ?>
                         <th scope="col">
                             <?php echo $hotel['name'] ?>
                         </th>
-                    <?php } ?>
+                    <?php }} ?>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <th scope="row">Descrizione</th>
-                    <?php foreach($hotels as $hotel) { ?>
+                    <th class="table-info" scope="row">Descrizione</th>
+                    <?php foreach ($hotels as $hotel) { ?>
+                        <?php if($parking_filter == 'on'){ ?>
+                            <td>
+                                <?php 
+                                    if($hotel['parking']){
+                                        echo $hotel['description'];
+                                    }  
+                                ?>
+                            </td>
+                        <?php }else{ ?>
                         <td>
                             <?php echo $hotel['description'] ?>
                         </td>
-                    <?php } ?>
+                    <?php }} ?>
                 </tr>
                 <tr>
-                    <th scope="row">Parcheggio</th>
-                    <?php foreach($hotels as $hotel) { ?>
-
+                    <th class="table-info" scope="row">Parcheggio</th>
+                    <?php foreach ($hotels as $hotel) { ?>
+                        <?php if($parking_filter == 'on'){ ?>
+                            <td>
+                                <?php 
+                                    if($hotel['parking']){
+                                        echo ($hotel['parking'] ? 'SÌ' : 'NO');
+                                    }  
+                                ?>
+                            </td>
+                        <?php }else{ ?>
                         <td>
                             <?php echo ($hotel['parking'] ? 'SÌ' : 'NO') ?>
                         </td>
-
-                    <?php } ?>
+                    <?php }} ?>
                 </tr>
                 <tr>
-                    <th scope="row">Voto</th>
-                    <?php foreach($hotels as $hotel) { ?>
-
+                    <th class="table-info" scope="row">Voto</th>
+                    <?php foreach ($hotels as $hotel) { ?>
+                        <?php if($parking_filter == 'on'){ ?>
+                            <td>
+                                <?php 
+                                    if($hotel['parking']){
+                                        echo $hotel['vote'];
+                                    }  
+                                ?>
+                            </td>
+                        <?php }else{ ?>
                         <td>
                             <?php echo $hotel['vote'] ?>
                         </td>
-
-                    <?php } ?>
+                    <?php }} ?>
                 </tr>
                 <tr>
-                    <th scope="row">Distanza dal centro</th>
-                    <?php foreach($hotels as $hotel) { ?>
-
+                    <th class="table-info" scope="row">Distanza dal centro</th>
+                    <?php foreach ($hotels as $hotel) { ?>
+                        <?php if($parking_filter == 'on'){ ?>
+                            <td>
+                                <?php 
+                                    if($hotel['parking']){
+                                        echo $hotel['distance_to_center'];
+                                    }  
+                                ?>
+                            </td>
+                        <?php }else{ ?>
                         <td>
                             <?php echo $hotel['distance_to_center'] ?>
                         </td>
-
-                    <?php } ?>
+                    <?php }} ?>
                 </tr>
             </tbody>
     </table>
