@@ -50,6 +50,7 @@
         ];
 
         $parking_filter = ($_GET['if_parking'] ?? 'off');
+        $min_vote = $_GET['min_vote'];
     ?>
 
     <div class="container">
@@ -60,6 +61,17 @@
             <div>
                 <label for="if_parking">FILTRA PER PARCHEGGIO</label>
                 <input type="checkbox" id="if_parking" name="if_parking" <?php echo ($parking_filter == 'on' ? 'checked' : '')  ?>>
+            </div>
+            <div>
+                <label for="min_vote">VOTO MINIMO:</label>
+                <select name="min_vote" id="min_vote">
+                    <?php 
+                        for($i = 1; $i<=5; $i++){
+                            echo "<option value='$i'" . ($min_vote == $i ? 'selected' : '') . ">$i</option>";
+                        }
+                    ?>
+                    
+                </select>
             </div>    
             <button class="btn btn-outline-primary" type="submit">AGGIORNA</button>
 
@@ -71,6 +83,7 @@
                 <tr class="table-info">
                     <th scope="col">HOTEL</th>+
                     <?php foreach ($hotels as $hotel) { ?>
+                    <?php if($hotel['vote'] >= $min_vote) { ?>
                         <?php if($parking_filter == 'on'){ ?>
                             <th scope="col">
                                 <?php 
@@ -83,13 +96,15 @@
                         <th scope="col">
                             <?php echo $hotel['name'] ?>
                         </th>
-                    <?php }} ?>
+                        <?php }} ?>
+                    <?php } ?>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <th class="table-info" scope="row">Descrizione</th>
                     <?php foreach ($hotels as $hotel) { ?>
+                    <?php if($hotel['vote'] >= $min_vote) { ?>
                         <?php if($parking_filter == 'on'){ ?>
                             <td>
                                 <?php 
@@ -103,10 +118,12 @@
                             <?php echo $hotel['description'] ?>
                         </td>
                     <?php }} ?>
+                    <?php } ?>
                 </tr>
                 <tr>
                     <th class="table-info" scope="row">Parcheggio</th>
                     <?php foreach ($hotels as $hotel) { ?>
+                    <?php if($hotel['vote'] >= $min_vote) { ?>
                         <?php if($parking_filter == 'on'){ ?>
                             <td>
                                 <?php 
@@ -120,10 +137,12 @@
                             <?php echo ($hotel['parking'] ? 'SÌ' : 'NO') ?>
                         </td>
                     <?php }} ?>
+                    <?php } ?>
                 </tr>
                 <tr>
                     <th class="table-info" scope="row">Voto</th>
                     <?php foreach ($hotels as $hotel) { ?>
+                    <?php if($hotel['vote'] >= $min_vote) { ?>
                         <?php if($parking_filter == 'on'){ ?>
                             <td>
                                 <?php 
@@ -137,10 +156,12 @@
                             <?php echo $hotel['vote'] ?>
                         </td>
                     <?php }} ?>
+                    <?php } ?>
                 </tr>
                 <tr>
                     <th class="table-info" scope="row">Distanza dal centro</th>
                     <?php foreach ($hotels as $hotel) { ?>
+                    <?php if($hotel['vote'] >= $min_vote) { ?>
                         <?php if($parking_filter == 'on'){ ?>
                             <td>
                                 <?php 
@@ -154,6 +175,7 @@
                             <?php echo $hotel['distance_to_center'] ?>
                         </td>
                     <?php }} ?>
+                    <?php } ?>
                 </tr>
             </tbody>
     </table>
