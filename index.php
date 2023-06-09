@@ -64,8 +64,6 @@
                 }
             }
         }
-
-        var_dump($filtered_hotels);
     ?>
 
     <div class="container">
