@@ -60,7 +60,7 @@
         if($parking_filter == 'on'){
             foreach($filtered_hotels as $i => $hotel){
                 if(!$hotel['parking']){
-                    array_splice($filtered_hotels, $i, $i);
+                    array_splice($filtered_hotels, $i, 1);
                 }
             }
         }
@@ -70,7 +70,7 @@
 
         <h1 class="text-center">HOTEL HOMEPAGE</h1>
 
-        <form class="d-flex align-items-center justify-content-start gap-3" action="./index.php" method="get">
+        <form class="d-flex align-items-center justify-content-start gap-3 mb-4" action="./index.php" method="get">
             <div>
                 <label for="if_parking">FILTRA PER PARCHEGGIO</label>
                 <input type="checkbox" id="if_parking" name="if_parking" <?php echo ($parking_filter == 'on' ? 'checked' : '') ?>>
@@ -94,7 +94,7 @@
         <table class="table text-center">
             <thead>
                 <tr class="table-info">
-                    <th scope="col">HOTEL</th>+
+                    <th scope="col">HOTEL</th>
                     <?php foreach ($filtered_hotels as $hotel) { ?>
                         <th scope="col">
                             <?php echo $hotel['name']; ?>
