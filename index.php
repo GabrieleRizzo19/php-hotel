@@ -54,7 +54,7 @@
         $filtered_hotels = [];
         foreach($hotels as $hotel){
             if($hotel['vote'] >= $min_vote){
-                array_push($filtered_hotels, $hotel);
+                $filtered_hotels[] = $hotel;
             }
         }
         if($parking_filter == 'on'){
