@@ -90,53 +90,56 @@
 
         </form>
         
-
-        <table class="table text-center">
-            <thead>
-                <tr class="table-info">
-                    <th scope="col">HOTEL</th>
-                    <?php foreach ($filtered_hotels as $hotel) { ?>
-                        <th scope="col">
-                            <?php echo $hotel['name']; ?>
-                        </th>
-                    <?php } ?>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th class="table-info" scope="row">Descrizione</th>
-                    <?php foreach ($filtered_hotels as $hotel) { ?>
-                        <td>
-                            <?php echo $hotel['description']; ?>
-                        </td>
-                    <?php } ?>
-                </tr>
-                <tr>
-                    <th class="table-info" scope="row">Parcheggio</th>
-                    <?php foreach ($filtered_hotels as $hotel) { ?>
-                        <td>
-                            <?php echo ($hotel['parking'] ? 'SÌ' : 'NO'); ?>
-                        </td>
-                    <?php } ?>
-                </tr>
-                <tr>
-                    <th class="table-info" scope="row">Voto</th>
-                    <?php foreach ($filtered_hotels as $hotel) { ?>
-                        <td>
-                            <?php echo $hotel['vote'] ?>
-                        </td>
-                    <?php } ?>
-                </tr>
-                <tr>
-                    <th class="table-info" scope="row">Distanza dal centro</th>
-                    <?php foreach ($filtered_hotels as $hotel) { ?>
-                        <td>
-                            <?php echo $hotel['distance_to_center'] ?>
-                        </td>
-                    <?php } ?>
-                </tr>
-            </tbody>
-    </table>
+        <?php if(count($filtered_hotels) != 0) { ?>
+            <table class="table text-center">
+                <thead>
+                    <tr class="table-info">
+                        <th scope="col">HOTEL</th>
+                        <?php foreach ($filtered_hotels as $hotel) { ?>
+                            <th scope="col">
+                                <?php echo $hotel['name']; ?>
+                            </th>
+                        <?php } ?>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="table-info" scope="row">Descrizione</th>
+                        <?php foreach ($filtered_hotels as $hotel) { ?>
+                            <td>
+                                <?php echo $hotel['description']; ?>
+                            </td>
+                        <?php } ?>
+                    </tr>
+                    <tr>
+                        <th class="table-info" scope="row">Parcheggio</th>
+                        <?php foreach ($filtered_hotels as $hotel) { ?>
+                            <td>
+                                <?php echo ($hotel['parking'] ? 'SÌ' : 'NO'); ?>
+                            </td>
+                        <?php } ?>
+                    </tr>
+                    <tr>
+                        <th class="table-info" scope="row">Voto</th>
+                        <?php foreach ($filtered_hotels as $hotel) { ?>
+                            <td>
+                                <?php echo $hotel['vote'] ?>
+                            </td>
+                        <?php } ?>
+                    </tr>
+                    <tr>
+                        <th class="table-info" scope="row">Distanza dal centro</th>
+                        <?php foreach ($filtered_hotels as $hotel) { ?>
+                            <td>
+                                <?php echo $hotel['distance_to_center'] ?>
+                            </td>
+                        <?php } ?>
+                    </tr>
+                </tbody>
+        </table>
+    <?php }else{ ?>
+        <h2>NESSUN HOTEL TROVATO</h2>
+    <?php } ?>
 
     </div>
 
